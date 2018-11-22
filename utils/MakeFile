@@ -1,0 +1,51 @@
+
+# Compiler
+CC := gcc -ansi -std=gnu11 -pedantic -W -Wall -Wextra
+
+# Source files
+SRC := \
+	libhw.c \
+	device.c
+
+# create library
+lib:
+	$(CC) -shared -ludev -fPIC $(SRC) -o libhw.so
+
+# install dependencies
+setup:
+	sudo apt-get update
+	sudo apt-get --yes install libasound2-dev
+	sudo apt-get --yes install fluidsynth
+	#sudo apt-get --yes install alsa
+	#sudo apt-get --yes install socat
+	#git clone https://github.com/reverbrick/FluidPi.git
+	#sudo apt-get --yes install fluidsynth #patches?
+	wget http://www.varal.org/ttymidi/ttymidi.tar.gz
+	wget https://raw.githubusercontent.com/reverbrick/Raspberry-Pi-Installer-Scripts/master/read-only-fs.sh
+
+
+debug: CC+=-g
+debug: lib
+
+# install library to system folders
+install:
+	sudo cp libhw.so /usr/local/lib
+	sudo cp libhw.h /usr/local/include
+	sudo cp device.h /usr/local/include
+	sudo ldconfig
+
+# library test
+test:
+	$(CC) main.c -lhw -ludev -o test
+
+# code test (without library)
+prog:
+	$(CC) $(SRC) main.c -ludev -o prog
+
+# clean
+clean:
+	rm -f test prog libhw.so
+
+#read-only filesystem
+readonly:
+	sudo bash read-only-fs.sh
