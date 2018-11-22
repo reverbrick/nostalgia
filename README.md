@@ -43,3 +43,4 @@ https://www.instructables.com/id/PiMiDi-A-Raspberry-Pi-Midi-Box-or-How-I-Learned
 https://github.com/MarquisdeGeek/FluidPi
 https://raspberrypi.stackexchange.com/questions/83610/gpio-pinout-orientation-raspberypi-zero-w
 https://openenergymonitor.org/forum-archive/node/12412.html
+http://www.fluidsynth.org/api/fluidsettings.xml#midi.autoconnect

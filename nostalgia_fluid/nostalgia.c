@@ -20,9 +20,21 @@ int main(){
 
   /* Create the settings. */
   settings = new_fluid_settings();
-  fluid_settings_setstr(settings, "audio.driver", "alsa");
-  fluid_settings_setstr(settings, "midi.autoconnect", 1);
-  fluid_settings_setstr(settings, "midi.driver", "alsa_seq");
+  fluid_settings_setstr(settings, "audio.driver",                 "alsa");
+  fluid_settings_setint(settings, "audio.periods",                2);
+  fluid_settings_setint(settings, "audio.period-size",            128);
+  fluid_settings_setint(settings, "audio.realtime-prio",          99);
+  fluid_settings_setint(settings, "midi.autoconnect",             1);
+  fluid_settings_setstr(settings, "midi.driver",                  "alsa_raw");
+  fluid_settings_setstr(settings, "midi.alsa.device",             "hw:1,0,0");
+  fluid_settings_setint(settings, "midi.realtime-prio",           50);
+  fluid_settings_setint(settings, "synth.polyphony",              16);
+  fluid_settings_setint(settings, "synth.reverb.active",          0);
+  fluid_settings_setint(settings, "synth.chorus.active",          0);
+  fluid_settings_setint(settings, "synth.cpu-cores",              4);
+  fluid_settings_setint(settings, "synth.threadsafe-api",         1);
+  fluid_settings_setint(settings, "synth.dynamic-sample-loading", 0);
+  fluid_settings_setint(settings, "synth.gain",                   0.2);
 
   /* Create the synthesizer. */
   synth = new_fluid_synth(settings);
@@ -36,11 +48,12 @@ int main(){
   //router = new_fluid_midi_router (settings, fluid_synth_handle_midi_event, synth);
 
   /* Load a SoundFont and reset presets */
-  sfont_id = fluid_synth_sfload(synth, "sf2/VintageDreamsWaves-v2.sf2", 1);
+  sfont_id = fluid_synth_sfload(synth, "/usr/share/sounds/sf2/FluidR3_GM.sf2", 1);
 
-  fluid_synth_noteon(synth, 0, 60, 80);
-  sleep(1);
-  fluid_synth_noteoff(synth, 0, 60);
+  //fluid_synth_noteon(synth, 0, 60, 80);
+  //sleep(1);
+  //fluid_synth_noteoff(synth, 0, 60);
+  //sleep(1);
 
   printf("press <Enter> to stop\n");
   n = getchar();

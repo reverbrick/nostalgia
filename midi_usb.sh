@@ -6,12 +6,12 @@ tmux new-session -d -s my_midi -n fluidsynth
 
 tmux new-window -t my_midi:1 -n ttymidi
 
-tmux send-keys -t my_midi:0 "fluidsynth -a alsa -m alsa_seq /usr/share/sounds/sf2/FluidR3_GM.sf2" C-m
+tmux send-keys -t my_midi:0 "fluidsynth -a alsa -m alsa_seq /home/pi/nostalgia/nostalgia_fluid/sf2/VintageDreamsWaves-v2.sf2" C-m
 
 sleep 14
 
 #use your specific port settings to connect ttymidi out to Fluidsynth
 
-tmux send-keys -t my_midi:1 "aconnect 24:0 128:0" C-m
+tmux send-keys -t my_midi:1 "aconnect 20:0 128:0" C-m
 
 tmux select-window -t my_midi:fluidsynth
