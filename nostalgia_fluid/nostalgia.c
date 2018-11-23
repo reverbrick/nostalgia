@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <fluidsynth.h>
 
-int main(){
+int main(int argc, char *argv[]){
 
   fluid_settings_t *settings;
   fluid_synth_t *synth;
@@ -45,10 +45,10 @@ int main(){
   mdriver = new_fluid_midi_driver(settings, fluid_synth_handle_midi_event, synth);
 
   /* Create the MIDI router and pass events to the synthesizer */
-  //router = new_fluid_midi_router (settings, fluid_synth_handle_midi_event, synth);
+  //router = new_fluid_midi_router(settings, fluid_synth_handle_midi_event, synth);
 
   /* Load a SoundFont and reset presets */
-  sfont_id = fluid_synth_sfload(synth, "/usr/share/sounds/sf2/FluidR3_GM.sf2", 1);
+  sfont_id = fluid_synth_sfload(synth, argv[1], 1);
 
   //fluid_synth_noteon(synth, 0, 60, 80);
   //sleep(1);
