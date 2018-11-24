@@ -48,7 +48,7 @@ int main(int argc, char *argv[]){
   mdriver = new_fluid_midi_driver(settings, fluid_synth_handle_midi_event, synth);
 
   /* Create the MIDI router and pass events to the synthesizer */
-  //router = new_fluid_midi_router (settings, fluid_synth_handle_midi_event, synth);
+  //router = new_fluid_midi_router(settings, fluid_synth_handle_midi_event, synth);
 
   /* Load a SoundFont and reset presets */
   sfont_id = fluid_synth_sfload(synth, argv[1], 1);
