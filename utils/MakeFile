@@ -46,6 +46,13 @@ prog:
 clean:
 	rm -f test prog libhw.so
 
+#store configs in utils
+store:
+	sudo cp /etc/asound.conf /home/pi/nostalgia/utils/
+	sudo cp /boot/config.txt /home/pi/nostalgia/utils/
+	sudo cp /boot/cmdline.txt /home/pi/nostalgia/utils/
+	sudo cp /etc/security/limits.d/audio.conf /home/pi/nostalgia/utils/
+
 #read-only filesystem
 readonly:
 	sudo bash read-only-fs.sh

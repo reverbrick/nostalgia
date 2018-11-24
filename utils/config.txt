@@ -58,4 +58,5 @@ dtparam=audio=on
 #Playable Electronics below
 # Enable UART
 enable_uart=1
-
+dtoverlay=pi3-miniuart-bt
+dtoverlay=midi-uart0 
